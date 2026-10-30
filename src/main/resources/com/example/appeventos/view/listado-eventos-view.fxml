@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.appeventos.controller.ListadoEventosController" styleClass="list-view">
+    <padding><Insets top="12.0" right="4.0" bottom="12.0" left="4.0"/></padding>
+    <Label text="Listado de eventos" styleClass="section-title" />
+    <Label text="Selecciona una fila y pulsa Modificar para abrir el formulario con los datos actuales." wrapText="true" styleClass="body-text" />
+    <TableView fx:id="tablaEventos" VBox.vgrow="ALWAYS" prefHeight="420.0">
+        <columns>
+            <TableColumn fx:id="columnaNombre" text="Nombre" prefWidth="190.0" />
+            <TableColumn fx:id="columnaCategoria" text="Categoría" prefWidth="115.0" />
+            <TableColumn fx:id="columnaFecha" text="Fecha" prefWidth="110.0" />
+            <TableColumn fx:id="columnaLugar" text="Lugar" prefWidth="165.0" />
+            <TableColumn fx:id="columnaModalidad" text="Modalidad" prefWidth="110.0" />
+        </columns>
+    </TableView>
+    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+        <Button text="Recargar" onAction="#recargarListado" styleClass="secondary-button" />
+        <Button text="Modificar seleccionado" onAction="#editarSeleccionado" styleClass="primary-button" />
+    </HBox>
+</VBox>

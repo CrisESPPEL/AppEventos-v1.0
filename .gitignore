@@ -1,0 +1,6 @@
+target/
+.idea/
+*.iml
+out/
+.DS_Store
+# Los CSV son datos locales generados por la aplicación; conserva la carpeta si quieres probar con datos propios.

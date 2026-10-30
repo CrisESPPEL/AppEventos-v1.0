@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1100.0"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.appeventos.controller.MainController" styleClass="app-root">
+    <left>
+        <VBox prefWidth="220.0" spacing="12.0" styleClass="sidebar">
+            <padding><Insets top="28.0" right="16.0" bottom="20.0" left="16.0"/></padding>
+            <Label text="AppEventos" styleClass="logo" />
+            <Label text="GESTIÓN DE EVENTOS" styleClass="sidebar-subtitle" wrapText="true" />
+            <VBox spacing="8.0" styleClass="menu">
+                <Button text="⌂   Inicio" onAction="#mostrarInicio" maxWidth="Infinity" styleClass="menu-button" />
+                <Button text="＋   Nuevo evento" onAction="#nuevoEvento" maxWidth="Infinity" styleClass="menu-button" />
+                <Button text="▤   Listado de eventos" onAction="#mostrarListado" maxWidth="Infinity" styleClass="menu-button" />
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS" />
+            <Label text="AppEventos v1.0 · DAM" styleClass="sidebar-footer" wrapText="true" />
+        </VBox>
+    </left>
+    <center>
+        <VBox styleClass="content-area" BorderPane.alignment="CENTER">
+            <padding><Insets top="26.0" right="28.0" bottom="28.0" left="28.0"/></padding>
+            <Label text="Gestión de eventos" styleClass="page-title" />
+            <Label text="Registra, consulta y modifica los eventos de la aplicación." styleClass="page-subtitle" />
+            <VBox fx:id="contenedorCentral" spacing="16.0" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </center>
+</BorderPane>
