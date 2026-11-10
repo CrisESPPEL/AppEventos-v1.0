@@ -25,6 +25,7 @@ import java.util.function.Consumer;
 
 public class FormularioEventoController {
 
+    // Declaramos todos los campos de formulario-evento-view.fxml
     @FXML private Label lblTitulo;
     @FXML private ComboBox<String> cbCategoria;
     @FXML private TextField txtNombre;
@@ -108,6 +109,7 @@ public class FormularioEventoController {
         }
     }
 
+    // Constructor de los sliders
     private void prepararSlider(Slider slider, Label etiquetaValor) {
         slider.setMin(1);
         slider.setMax(10);
@@ -161,50 +163,65 @@ public class FormularioEventoController {
         fila.setManaged(mostrar);
     }
 
+    // Metodo para guardar un evento en un .csv
     @FXML
     private void guardarEvento() {
+
         String categoria = cbCategoria.getValue();
+
+        // Si no hay categoría que guardar
         if (categoria == null || categoria.isBlank()) {
             mostrarError("Selecciona una categoría.");
             return;
         }
+        // Si no encuentra un nombre que guardar
         if (txtNombre.getText().trim().isEmpty()) {
             mostrarError("Introduce el nombre del evento.");
             return;
         }
+        // Si no encuentra un tipo de evento que guardar
         if (cbTipo.getValue() == null) {
             mostrarError("Selecciona el tipo de evento o actividad.");
             return;
         }
+        // Si la categoría es Tecnología
         if ("Tecnología".equals(categoria)) {
+            // Si no encuentra una tecnología o temática principal que guardar
             if (txtTematica.getText().trim().isEmpty()) {
                 mostrarError("Introduce la tecnología o temática principal.");
                 return;
             }
+            // Si no encuentra un nivel que guardar
             if (cbNivel.getValue() == null) {
                 mostrarError("Selecciona el nivel.");
                 return;
             }
         }
+        // Si no encuentra un deporte que guardar
         if ("Deportes".equals(categoria) && txtDeporte.getText().trim().isEmpty()) {
             mostrarError("Introduce el deporte o disciplina.");
             return;
         }
+        // Si no encuentra un lugar que guardar
         if (txtLugar.getText().trim().isEmpty()) {
             mostrarError("Introduce el lugar del evento.");
             return;
         }
+        // Si no encuentra una fecha del evento que guardar
         if (dpFecha.getValue() == null) {
             mostrarError("Selecciona la fecha del evento.");
             return;
         }
+
         String publico = cbPublico.getEditor().getText().trim();
+        // Si no encuentra un público objetivo que guardar
         if (publico.isEmpty()) {
             mostrarError("Introduce el público objetivo.");
             return;
         }
 
         String modalidad = obtenerModalidad();
+        // Si no encuentra una modalidad que guardar
         if (modalidad.isEmpty()) {
             mostrarError("Selecciona una modalidad.");
             return;
@@ -231,13 +248,13 @@ public class FormularioEventoController {
         List<String> datos = new ArrayList<>();
         datos.add(txtNombre.getText().trim());
 
+        // Dependiendo de la categoría se guardan los datos recopilados
         switch (categoria) {
             case "Música" -> {
                 datos.add(cbTipo.getValue());
                 datos.add(txtLugar.getText().trim());
                 datos.add(dpFecha.getValue().toString());
                 datos.add(String.valueOf(spAforo.getValue()));
-                // Se conserva el orden del CSV de v0.1: modalidad, público, destacado.
                 datos.add(modalidad);
                 datos.add(publico);
                 datos.add(chkDestacado.isSelected() ? "Sí" : "No");
@@ -277,13 +294,16 @@ public class FormularioEventoController {
             default -> throw new IllegalArgumentException("Categoría desconocida: " + categoria);
         }
 
+        // Datos que son universales entre las 4 categorías
         datos.add(String.valueOf((int) slInteres.getValue()));
         datos.add(String.valueOf((int) slDifusion.getValue()));
         datos.add(String.valueOf((int) slOrganizacion.getValue()));
         datos.add(txtDescripcion.getText().trim());
+
         return datos.toArray(new String[0]);
     }
 
+    // Metodo para obtener la modalidad escogida por el usuario
     private String obtenerModalidad() {
         if (rbPresencial.isSelected()) return "Presencial";
         if (rbOnline.isSelected()) return "Online";
@@ -296,6 +316,7 @@ public class FormularioEventoController {
         String categoria = evento.getCategoria();
         txtNombre.setText(dato(datos, 0));
 
+        // Según la categoría del evento cargamos los datos de cada campo en la posición deseada
         switch (categoria) {
             case "Música" -> {
                 cbTipo.setValue(dato(datos, 1));
@@ -350,10 +371,12 @@ public class FormularioEventoController {
         }
     }
 
+    // Metodo para obtener datos del array de datos evitando errores, como coger valores nulos
     private String dato(String[] datos, int indice) {
         return indice >= 0 && indice < datos.length && datos[indice] != null ? datos[indice] : "";
     }
 
+    // Metodo para obtener la fecha de un evento
     private LocalDate fecha(String texto) {
         if (texto == null || texto.isBlank()) return null;
         try {
@@ -363,6 +386,7 @@ public class FormularioEventoController {
         }
     }
 
+    // Metodo para establecer el aforo de un evento, con un mínimo de 1 y un máximo de 1_000_000
     private void establecerAforo(String texto) {
         try {
             int valor = Integer.parseInt(texto);
@@ -372,6 +396,7 @@ public class FormularioEventoController {
         }
     }
 
+    // Metodo para seleccionar la modalidad del evento, puede ser Online, Híbrido o Presencial
     private void seleccionarModalidad(String modalidad) {
         switch (modalidad) {
             case "Online" -> rbOnline.setSelected(true);
@@ -380,20 +405,23 @@ public class FormularioEventoController {
         }
     }
 
+    // Metodo que recoge los valores de los 3 sliders
     private void establecerSliders(String[] datos, int interes, int difusion, int organizacion) {
-        slInteres.setValue(enteroEntre(dato(datos, interes), 5));
-        slDifusion.setValue(enteroEntre(dato(datos, difusion), 5));
-        slOrganizacion.setValue(enteroEntre(dato(datos, organizacion), 5));
+        slInteres.setValue(enteroEntre(dato(datos, interes)));
+        slDifusion.setValue(enteroEntre(dato(datos, difusion)));
+        slOrganizacion.setValue(enteroEntre(dato(datos, organizacion)));
     }
 
-    private int enteroEntre(String texto, int porDefecto) {
+    // Metodo que convierte el valor del slider en entero, si falla devuelve el valor predeterminado
+    private int enteroEntre(String texto) {
         try {
             return Math.max(1, Math.min(10, Integer.parseInt(texto)));
         } catch (NumberFormatException e) {
-            return porDefecto;
+            return 5;
         }
     }
 
+    // Metodo para limpiar los datos escritos en el formulario, asignando sus valores predeterminados
     @FXML
     private void limpiarFormulario() {
         txtNombre.clear();
@@ -417,6 +445,7 @@ public class FormularioEventoController {
         txtDescripcion.clear();
     }
 
+    // Metodo que sirve como constructor para poder mostrar un mensaje de error
     private void mostrarError(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("AppEventos");
@@ -425,6 +454,7 @@ public class FormularioEventoController {
         alerta.showAndWait();
     }
 
+    // Metodo que sirve como constructor para poder mostrar un mensaje de confirmación en caso de éxito
     private void mostrarConfirmacion(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("AppEventos");

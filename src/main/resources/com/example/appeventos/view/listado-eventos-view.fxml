@@ -7,11 +7,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<!-- Este fichero, listado-eventos.fxml, controla la vista del apartado del listado de eventos en formato de tabla. -->
+
 <VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.appeventos.controller.ListadoEventosController" styleClass="list-view">
+
     <padding><Insets top="12.0" right="4.0" bottom="12.0" left="4.0"/></padding>
+    <!-- Título -->
     <Label text="Listado de eventos" styleClass="section-title" />
+    <!-- Subtítulo -->
     <Label text="Selecciona una fila y pulsa Modificar para abrir el formulario con los datos actuales." wrapText="true" styleClass="body-text" />
+    <!-- Tabla de eventos guardados -->
     <TableView fx:id="tablaEventos" VBox.vgrow="ALWAYS" prefHeight="420.0">
         <columns>
             <TableColumn fx:id="columnaNombre" text="Nombre" prefWidth="190.0" />
@@ -21,6 +27,7 @@
             <TableColumn fx:id="columnaModalidad" text="Modalidad" prefWidth="110.0" />
         </columns>
     </TableView>
+    <!-- Botones inferiores para recargar la página o modificar el evento seleccionado -->
     <HBox spacing="10.0" alignment="CENTER_RIGHT">
         <Button text="Recargar" onAction="#recargarListado" styleClass="secondary-button" />
         <Button text="Modificar seleccionado" onAction="#editarSeleccionado" styleClass="primary-button" />

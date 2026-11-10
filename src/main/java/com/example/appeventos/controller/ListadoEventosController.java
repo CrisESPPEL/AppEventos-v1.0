@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 
 public class ListadoEventosController {
 
+    // Declaramos las variables del fxml
     @FXML private TableView<Evento> tablaEventos;
     @FXML private TableColumn<Evento, String> columnaNombre;
     @FXML private TableColumn<Evento, String> columnaCategoria;
@@ -37,10 +38,12 @@ public class ListadoEventosController {
         cargarEventos();
     }
 
+    //
     public void configurar(Consumer<Evento> accionEditar) {
         this.accionEditar = accionEditar == null ? evento -> { } : accionEditar;
     }
 
+    // Metodo para editar un evento seleccionado de la tabla
     @FXML
     private void editarSeleccionado() {
         Evento seleccionado = tablaEventos.getSelectionModel().getSelectedItem();
@@ -68,6 +71,7 @@ public class ListadoEventosController {
         }
     }
 
+    // Metodo que sirve como constructor para poder mostrar un aviso
     private void mostrarAviso(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Listado de eventos");

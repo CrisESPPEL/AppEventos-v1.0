@@ -42,6 +42,7 @@ public class MainController {
     }
 
     public void mostrarFormulario(String categoria, Evento evento) {
+        // Cargamos formulario-evento-view.fxml, que muestra la vista de los formularios de los eventos.
         try {
             FXMLLoader loader = crearLoader("/com/example/appeventos/view/formulario-evento-view.fxml");
             Parent vista = loader.load();
@@ -58,6 +59,7 @@ public class MainController {
     }
 
     private void cargarVista(String recurso) {
+        // Cargamos inicio-view.fxml, que muestra la vista del contenido del panel central del menú principal.
         try {
             FXMLLoader loader = crearLoader(recurso);
             Parent vista = loader.load();
@@ -76,10 +78,12 @@ public class MainController {
         VBox.setVgrow(vista, javafx.scene.layout.Priority.ALWAYS);
     }
 
+    // Metodo para cargar un fichero fxml
     private FXMLLoader crearLoader(String recurso) {
         return new FXMLLoader(getClass().getResource(recurso));
     }
 
+    // Metodo que sirve como constructor para poder mostrar un mensaje de error
     private void mostrarError(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("AppEventos");

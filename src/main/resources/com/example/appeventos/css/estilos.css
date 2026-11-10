@@ -1,137 +1,542 @@
+/* =========================================================
+   AppEventos - estilos.css  (JavaFX 17 / 21)
+
+   IDEA CLAVE (para explicarla en la defensa):
+   Cada tipo de evento define unas "variables de color" de CSS
+   (-tipo-a, -tipo-b, ...). Despues, las reglas de tarjetas,
+   badges, filas, cabecera y botones usan esas variables.
+   Asi escribimos cada regla UNA sola vez y cambia de color
+   segun la clase del tipo (evento-musica, evento-tecnologia...).
+
+   Indice:
+     1. Colores por tipo de evento
+     2. Base de la aplicacion
+     3. Menu lateral (sidebar)
+     4. Tipografia y areas de contenido
+     5. Tarjetas del inicio
+     6. Botones
+     7. Formularios
+     8. Badges (etiquetas de tipo)
+     9. Tablas
+    10. Scrollbars, tooltips y dialogos
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. COLORES POR TIPO DE EVENTO
+   a / b           -> degradado fuerte (iconos, cabeceras, botones)
+   suave-a / suave-b -> degradado claro (fondos, badges, hover)
+   texto           -> color de texto oscuro de la misma familia
+   borde           -> color de borde suave
+   --------------------------------------------------------- */
+
+/* Valores por defecto = color de marca de la app (indigo -> violeta) */
 .root {
-    -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-font-size: 13px;
-    -fx-background-color: #f4f6fb;
-    -fx-text-fill: #202a44;
+    -tipo-a: #5b5ff5;
+    -tipo-b: #8b5cf6;
+    -tipo-suave-a: #eef2ff;
+    -tipo-suave-b: #f5f3ff;
+    -tipo-texto: #3730a3;
+    -tipo-borde: #c7d2fe;
 }
 
+/* Musica: fucsia -> violeta */
+.evento-musica {
+    -tipo-a: #c026d3;
+    -tipo-b: #7c3aed;
+    -tipo-suave-a: #fae8ff;
+    -tipo-suave-b: #ede9fe;
+    -tipo-texto: #86198f;
+    -tipo-borde: #f0abfc;
+}
+
+/* Tecnologia: cian -> azul */
+.evento-tecnologia {
+    -tipo-a: #0891b2;
+    -tipo-b: #2563eb;
+    -tipo-suave-a: #cffafe;
+    -tipo-suave-b: #dbeafe;
+    -tipo-texto: #155e75;
+    -tipo-borde: #67e8f9;
+}
+
+/* Deportes: verde -> esmeralda */
+.evento-deportes {
+    -tipo-a: #16a34a;
+    -tipo-b: #047857;
+    -tipo-suave-a: #dcfce7;
+    -tipo-suave-b: #d1fae5;
+    -tipo-texto: #166534;
+    -tipo-borde: #86efac;
+}
+
+/* Cultura: naranja -> rosa */
+.evento-cultura {
+    -tipo-a: #ea580c;
+    -tipo-b: #be123c;
+    -tipo-suave-a: #ffedd5;
+    -tipo-suave-b: #ffe4e6;
+    -tipo-texto: #9a3412;
+    -tipo-borde: #fdba74;
+}
+
+
+/* ---------------------------------------------------------
+   2. BASE DE LA APLICACION
+   --------------------------------------------------------- */
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #0f172a;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+/* ---------------------------------------------------------
+   3. MENU LATERAL (SIDEBAR)
+   --------------------------------------------------------- */
 .sidebar {
-    -fx-background-color: #18233f;
+    -fx-background-color: linear-gradient(to bottom, #0f172a 0%, #1e1b4b 100%);
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.35), 18, 0.1, 4, 0);
+}
+
+/* Cuadrado con las iniciales "AE" junto al nombre */
+.logo-badge {
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-alignment: CENTER;
+    -fx-background-color: linear-gradient(to bottom right, #818cf8, #c026d3);
+    -fx-background-radius: 12px;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(192, 38, 211, 0.55), 14, 0.2, 0, 3);
 }
 .logo {
     -fx-text-fill: white;
-    -fx-font-size: 25px;
+    -fx-font-size: 21px;
     -fx-font-weight: bold;
 }
 .sidebar-subtitle {
-    -fx-text-fill: #a9b6d1;
+    -fx-text-fill: #818cf8;
     -fx-font-size: 10px;
     -fx-font-weight: bold;
 }
+.sidebar-divider {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+.menu-section {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 0 0 4px;
+}
 .sidebar-footer {
-    -fx-text-fill: #a9b6d1;
+    -fx-text-fill: #64748b;
     -fx-font-size: 11px;
 }
-.menu {
-    -fx-padding: 22px 0 0 0;
-}
+
+/* Botones del menu */
 .menu-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #eaf0ff;
+    -fx-background-insets: 0;
+    -fx-text-fill: #cbd5e1;
     -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12px 10px;
-    -fx-background-radius: 8px;
+    -fx-graphic-text-gap: 12px;
+    -fx-padding: 9px 12px;
+    -fx-background-radius: 12px;
     -fx-cursor: hand;
     -fx-font-size: 13px;
+    -fx-font-weight: bold;
 }
 .menu-button:hover {
-    -fx-background-color: #2a385b;
+    -fx-background-color: rgba(129, 140, 248, 0.14);
+    -fx-text-fill: white;
 }
+.menu-button:pressed {
+    -fx-background-color: rgba(129, 140, 248, 0.26);
+}
+/* Boton de la seccion actual (la clase "active" la pone MainController) */
+.menu-button.active {
+    -fx-background-color: linear-gradient(to right, #5b5ff5, #8b5cf6);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(91, 95, 245, 0.55), 14, 0.1, 0, 4);
+}
+
+/* Icono del boton: cuadradito redondeado */
+.menu-icon {
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-alignment: CENTER;
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-background-radius: 9px;
+    -fx-text-fill: #c7d2fe;
+    -fx-font-size: 14px;
+}
+.menu-button:hover .menu-icon {
+    -fx-background-color: rgba(129, 140, 248, 0.35);
+    -fx-text-fill: white;
+}
+.menu-button.active .menu-icon {
+    -fx-background-color: rgba(255, 255, 255, 0.22);
+    -fx-text-fill: white;
+}
+
+/* Leyenda de colores de los tipos de evento */
+.legend-dot {
+    -fx-min-width: 12px;
+    -fx-pref-width: 12px;
+    -fx-max-width: 12px;
+    -fx-min-height: 12px;
+    -fx-pref-height: 12px;
+    -fx-max-height: 12px;
+    -fx-background-color: linear-gradient(to bottom right, -tipo-a, -tipo-b);
+    -fx-background-radius: 6px;
+}
+.legend-text {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 12px;
+}
+
+
+/* ---------------------------------------------------------
+   4. TIPOGRAFIA Y AREAS DE CONTENIDO
+   --------------------------------------------------------- */
 .content-area, .home-view, .list-view, .form-view {
-    -fx-background-color: #f4f6fb;
+    -fx-background-color: #f1f5f9;
 }
 .page-title {
-    -fx-text-fill: #202a44;
-    -fx-font-size: 22px;
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 26px;
     -fx-font-weight: bold;
 }
 .page-subtitle, .body-text {
-    -fx-text-fill: #68738d;
+    -fx-text-fill: #64748b;
     -fx-font-size: 13px;
 }
 .section-title {
-    -fx-text-fill: #202a44;
-    -fx-font-size: 23px;
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
-.category-card, .info-card {
-    -fx-background-color: white;
-    -fx-background-radius: 12px;
-    -fx-padding: 16px;
-    -fx-border-color: #e5e9f2;
-    -fx-border-radius: 12px;
-    -fx-border-width: 1px;
+
+
+/* ---------------------------------------------------------
+   5. TARJETAS DEL INICIO
+   La tarjeta lleva ademas la clase del tipo (evento-musica...)
+   --------------------------------------------------------- */
+.category-card {
+    -fx-background-color: linear-gradient(to bottom right, white 0%, -tipo-suave-a 100%);
+    -fx-background-radius: 18px;
+    -fx-padding: 20px;
+    -fx-border-color: -tipo-borde;
+    -fx-border-radius: 18px;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.10), 16, 0.05, 0, 5);
+}
+.category-card:hover {
+    -fx-background-color: linear-gradient(to bottom right, -tipo-suave-a 0%, -tipo-suave-b 100%);
+    -fx-border-color: -tipo-a;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.22), 22, 0.1, 0, 9);
+    -fx-translate-y: -4px;
 }
 .category-icon {
-    -fx-text-fill: #4257a6;
-    -fx-font-size: 23px;
+    -fx-min-width: 46px;
+    -fx-min-height: 46px;
+    -fx-alignment: CENTER;
+    -fx-background-color: linear-gradient(to bottom right, -tipo-a, -tipo-b);
+    -fx-background-radius: 14px;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.25), 10, 0.1, 0, 3);
 }
 .category-title {
-    -fx-text-fill: #202a44;
-    -fx-font-size: 15px;
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
+.category-card .category-title {
+    -fx-text-fill: -tipo-texto;
+}
+
+/* Tarjeta informativa (sin color de tipo) */
+.info-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16px;
+    -fx-padding: 20px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 16px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 16, 0.05, 0, 4);
+}
+
+
+/* ---------------------------------------------------------
+   6. BOTONES
+   Usan -tipo-a / -tipo-b: dentro de una tarjeta o del
+   formulario toman el color del tipo; en el resto, el de marca.
+   --------------------------------------------------------- */
 .primary-button {
-    -fx-background-color: #4257a6;
+    -fx-background-color: linear-gradient(to right, -tipo-a, -tipo-b);
+    -fx-background-insets: 0;
     -fx-text-fill: white;
-    -fx-padding: 9px 15px;
-    -fx-background-radius: 7px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 10px;
     -fx-cursor: hand;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.25), 10, 0.1, 0, 3);
 }
 .primary-button:hover {
-    -fx-background-color: #34478e;
+    -fx-background-color: linear-gradient(to right, derive(-tipo-a, -12%), derive(-tipo-b, -12%));
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.35), 14, 0.15, 0, 5);
+    -fx-translate-y: -1px;
 }
+.primary-button:pressed {
+    -fx-background-color: derive(-tipo-b, -25%);
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.20), 5, 0.1, 0, 1);
+    -fx-translate-y: 1px;
+}
+.primary-button:disabled {
+    -fx-background-color: #cbd5e1;
+    -fx-effect: none;
+    -fx-opacity: 0.8;
+}
+
 .secondary-button {
-    -fx-background-color: #e8ecf7;
-    -fx-text-fill: #27345a;
-    -fx-padding: 9px 15px;
-    -fx-background-radius: 7px;
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-text-fill: -tipo-texto;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 10px;
+    -fx-border-color: -tipo-borde;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1.5px;
     -fx-cursor: hand;
+    -fx-font-weight: bold;
 }
 .secondary-button:hover {
-    -fx-background-color: #dbe2f3;
+    -fx-background-color: -tipo-suave-a;
+    -fx-border-color: -tipo-a;
+}
+.secondary-button:pressed {
+    -fx-background-color: -tipo-suave-b;
+}
+
+
+/* ---------------------------------------------------------
+   7. FORMULARIOS
+   El VBox del formulario recibe la clase del tipo desde
+   FormularioEventoController, asi que todo cambia de color.
+   --------------------------------------------------------- */
+.form-header {
+    -fx-background-color: linear-gradient(to right, -tipo-a, -tipo-b);
+    -fx-background-radius: 16px;
+    -fx-padding: 16px 22px;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.18), 14, 0.05, 0, 4);
 }
 .form-scroll {
-    -fx-background: #f4f6fb;
-    -fx-background-color: #f4f6fb;
+    -fx-background: #f1f5f9;
+    -fx-background-color: #f1f5f9;
     -fx-border-color: transparent;
 }
 .form-scroll > .viewport {
-    -fx-background-color: #f4f6fb;
+    -fx-background-color: #f1f5f9;
 }
 .form-row {
-    -fx-padding: 4px 0;
+    -fx-padding: 6px 0;
 }
 .field-label {
-    -fx-text-fill: #35415f;
+    -fx-text-fill: #334155;
     -fx-font-weight: bold;
+    -fx-font-size: 12px;
 }
+
 .text-field, .combo-box, .date-picker, .spinner, .text-area {
-    -fx-background-radius: 6px;
-    -fx-border-radius: 6px;
-    -fx-border-color: #dce2ef;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #cbd5e1;
+    -fx-border-width: 1px;
     -fx-background-color: white;
+    -fx-padding: 4px 6px;
+}
+.text-field, .text-area {
+    -fx-prompt-text-fill: #94a3b8;
+}
+.text-field:focused, .combo-box:focused, .date-picker:focused,
+.spinner:focused, .text-area:focused {
+    -fx-border-color: -tipo-a;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.12), 8, 0.1, 0, 2);
+}
+/* El campo de texto que va DENTRO de un combo, fecha o spinner no lleva borde propio */
+.combo-box-base > .text-field, .spinner > .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.combo-box-base > .text-field:focused, .spinner > .text-field:focused {
+    -fx-border-color: transparent;
+    -fx-effect: none;
 }
 .text-area {
     -fx-padding: 2px;
 }
+.text-area .content {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+.combo-box .list-cell, .combo-box-base > .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.18), 14, 0.1, 0, 4);
+}
+.combo-box-popup .list-cell:hover, .combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #eef2ff;
+    -fx-text-fill: #4347d9;
+}
+
+.check-box .box {
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #94a3b8;
+}
+.check-box:selected .box {
+    -fx-background-color: linear-gradient(to bottom right, -tipo-a, -tipo-b);
+    -fx-border-color: -tipo-a;
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+.radio-button:selected .dot {
+    -fx-background-color: -tipo-a;
+}
+
+
+/* ---------------------------------------------------------
+   8. BADGES (etiqueta de tipo, p. ej. en la tabla)
+   Se usan junto a la clase del tipo: "badge evento-musica"
+   --------------------------------------------------------- */
+.badge {
+    -fx-background-color: linear-gradient(to right, -tipo-suave-a, -tipo-suave-b);
+    -fx-background-radius: 20px;
+    -fx-border-color: -tipo-borde;
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-padding: 3px 12px;
+    -fx-text-fill: -tipo-texto;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+
+/* ---------------------------------------------------------
+   9. TABLAS
+   --------------------------------------------------------- */
 .table-view {
     -fx-background-color: white;
-    -fx-border-color: #e0e5f0;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 14px;
+    -fx-background-radius: 14px;
+    -fx-padding: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.07), 14, 0.05, 0, 3);
 }
 .table-view .column-header-background {
-    -fx-background-color: #e9edf7;
+    -fx-background-color: linear-gradient(to right, #eef2ff, #f5f3ff);
+    -fx-background-radius: 10px 10px 0 0;
 }
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: #e9edf7;
-    -fx-size: 36px;
-    -fx-border-color: transparent transparent #d8deed transparent;
+    -fx-background-color: transparent;
+    -fx-size: 42px;
+    -fx-border-color: transparent transparent #c7d2fe transparent;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #3730a3;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-cell-size: 40px;
+    -fx-border-color: transparent transparent #f1f5f9 transparent;
+}
+.table-row-cell:odd {
+    -fx-background-color: #f8fafc;
+}
+/* Fila con evento: franja de color a la izquierda (la clase la pone ListadoEventosController) */
+.table-row-cell.fila-evento {
+    -fx-border-color: transparent transparent #f1f5f9 linear-gradient(to bottom, -tipo-a, -tipo-b);
+    -fx-border-width: 0 0 1px 4px;
+}
+/* Hover y seleccion toman el tono suave del tipo de la fila */
+.table-row-cell:hover {
+    -fx-background-color: -tipo-suave-a;
 }
 .table-row-cell:selected {
-    -fx-background-color: #dce5ff;
-    -fx-text-background-color: #1f2c53;
+    -fx-background-color: linear-gradient(to right, derive(-tipo-suave-a, -6%), derive(-tipo-suave-b, -6%));
+    -fx-text-background-color: -tipo-texto;
+}
+.table-view:focused .table-row-cell:selected {
+    -fx-background-color: linear-gradient(to right, derive(-tipo-suave-a, -12%), derive(-tipo-suave-b, -12%));
+}
+.table-cell {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10px;
+}
+
+
+/* ---------------------------------------------------------
+   10. SCROLLBARS, TOOLTIPS Y DIALOGOS
+   --------------------------------------------------------- */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+.scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 8px;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: #818cf8;
+}
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+.scroll-bar:vertical { -fx-pref-width: 10px; }
+.scroll-bar:horizontal { -fx-pref-height: 10px; }
+
+.tooltip {
+    -fx-background-color: #0f172a;
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 12px;
+}
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+.dialog-pane > .button-bar .button {
+    -fx-background-color: linear-gradient(to right, #5b5ff5, #8b5cf6);
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
 }

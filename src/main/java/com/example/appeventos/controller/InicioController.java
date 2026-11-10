@@ -8,10 +8,12 @@ public class InicioController {
 
     private Consumer<String> alSeleccionarCategoria = categoria -> { };
 
+    // Metodo que establece una acción al seleccionar una categoría
     public void configurarCategoria(Consumer<String> accion) {
         alSeleccionarCategoria = accion == null ? categoria -> { } : accion;
     }
 
+    // Métodos para abrir formularios según cuál se ha seleccionado
     @FXML private void abrirMusica() {
         alSeleccionarCategoria.accept("Música");
     }

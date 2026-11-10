@@ -4,52 +4,70 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fitToWidth="true" styleClass="form-scroll" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appeventos.controller.FormularioEventoController">
+<!-- Este fichero, formulario-evento.fxml, controla la vista interna de todos los formularios, según que tipo de evento sea. -->
+
+<ScrollPane fitToWidth="true" styleClass="form-scroll" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appeventos.controller.FormularioEventoController">
     <content>
         <VBox spacing="13.0" styleClass="form-view">
+
             <padding><Insets bottom="18.0" left="8.0" right="8.0" top="12.0" /></padding>
+
             <Label fx:id="lblTitulo" styleClass="section-title" text="Nuevo evento" />
+
+            <!-- Categoría -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Categoría" />
                 <ComboBox fx:id="cbCategoria" maxWidth="Infinity" prefWidth="300.0" />
             </HBox>
+
             <Separator />
+            <!-- Nombre del evento -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Nombre del evento" />
                 <TextField fx:id="txtNombre" maxWidth="Infinity" promptText="Nombre del evento" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Deporte o disciplina -->
             <HBox fx:id="filaDeporte" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Deporte o disciplina" />
                 <TextField fx:id="txtDeporte" maxWidth="Infinity" promptText="Ej. Baloncesto" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Tipo de evento -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Tipo de evento o actividad" />
                 <ComboBox fx:id="cbTipo" maxWidth="Infinity" promptText="Selecciona un tipo" stylesheets="@../css/estilos.css" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Tipo de tecnología o temática -->
             <HBox fx:id="filaTematica" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Tecnología o temática" />
                 <TextField fx:id="txtTematica" maxWidth="Infinity" promptText="Temática principal" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Nivel de evento de tecnología -->
             <HBox fx:id="filaNivel" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Nivel" />
                 <ComboBox fx:id="cbNivel" maxWidth="Infinity" promptText="Selecciona un nivel" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Lugar de celebración del evento -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Lugar" />
                 <TextField fx:id="txtLugar" maxWidth="Infinity" promptText="Lugar de celebración" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Fecha de celebración del evento -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Fecha" />
                 <DatePicker fx:id="dpFecha" maxWidth="Infinity" promptText="Selecciona la fecha" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Aforo máximo -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Aforo máximo" />
                 <Spinner fx:id="spAforo" editable="true" prefWidth="180.0" />
             </HBox>
+            <!-- Público objetivo -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Público objetivo" />
                 <ComboBox fx:id="cbPublico" maxWidth="Infinity" promptText="Escribe el público objetivo" HBox.hgrow="ALWAYS" />
             </HBox>
+            <!-- Modalidad -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Modalidad" />
                 <HBox alignment="CENTER_LEFT" spacing="18.0">
@@ -58,42 +76,51 @@
                     <RadioButton fx:id="rbHibrido" text="Híbrido" />
                 </HBox>
             </HBox>
+            <!-- Inscripción previa -->
             <HBox fx:id="filaInscripcion" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="¿Requiere inscripción previa?" />
                 <CheckBox fx:id="chkInscripcion" text="Sí" />
             </HBox>
+            <!-- Material específico -->
             <HBox fx:id="filaMaterial" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="¿Necesita material específico?" />
                 <CheckBox fx:id="chkMaterial" text="Sí" />
             </HBox>
+            <!-- Evento destacado -->
             <HBox fx:id="filaDestacado" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="¿Es un evento destacado?" />
                 <CheckBox fx:id="chkDestacado" text="Sí" />
             </HBox>
+            <!-- Gratuito -->
             <HBox fx:id="filaGratuito" alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="¿Es gratuito?" />
                 <CheckBox fx:id="chkGratuito" text="Sí" />
             </HBox>
+            <!-- Interés esperado -->
             <Separator />
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Interés esperado" />
                 <Slider fx:id="slInteres" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
                 <Label fx:id="lblInteres" prefWidth="22.0" text="5" />
             </HBox>
+            <!-- Difusión prevista -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Difusión prevista" />
                 <Slider fx:id="slDifusion" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
                 <Label fx:id="lblDifusion" prefWidth="22.0" text="5" />
             </HBox>
+            <!-- Organización del evento -->
             <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="form-row">
                 <Label prefWidth="215.0" styleClass="field-label" text="Organización" />
                 <Slider fx:id="slOrganizacion" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
                 <Label fx:id="lblOrganizacion" prefWidth="22.0" text="5" />
             </HBox>
+            <!-- Descripción del evento -->
             <VBox spacing="8.0">
                 <Label styleClass="field-label" text="Descripción del evento" />
                 <TextArea fx:id="txtDescripcion" prefRowCount="3" promptText="Añade una descripción" wrapText="true" />
             </VBox>
+            <!-- Limpiar y guardar formulario -->
             <HBox alignment="CENTER_RIGHT" spacing="10.0">
                 <Button onAction="#limpiarFormulario" styleClass="secondary-button" text="Limpiar formulario" />
                 <Button onAction="#guardarEvento" styleClass="primary-button" text="Guardar evento" />
